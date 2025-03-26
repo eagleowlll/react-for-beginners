@@ -3,46 +3,26 @@
   <body>
     <div id="root"></div>
   </body>
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    // const root = document.getElementById("root");
-    const Title = () => (
-      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-        Hello I'm a title
-      </h3>
-    );
+    const root = document.getElementById("root");
 
-    const Button = () => (
-      <button
-        style={{ backgroundColor: "tomato" }}
-        onClick={() => console.log("im clicked")}
-      >
-        Click me
-      </button>
-    );
+    function App() {
+      let [counter, modifier] = React.useState(0);
+      const onClick = () => {
+        counter = counter + 1;
+        console.log(counter);
+      };
 
-    const Container = (
-      <div>
-        <Title />
-        <Button />
-        <Button />
-        <Button />
-        <Button />
-      </div>
-    );
-    ReactDOM.createRoot(root).render(Container);
-
-    // const btn = React.createElement(
-    //   "button",
-    //   {
-    //     onClick: () => console.log("im clicked"),
-    //     style: { backgroundColor: "tomato" },
-    //   },
-    //   "Click me"
-    // );
-    // const container = React.createElement("div", null, [Title, button]);
-    // ReactDOM.createRoot(root).render(container);
+      return (
+        <div>
+          <h3>Total clicks: {counter}</h3>
+          <button onClick={onClick}>Click me</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
   </script>
 </html>
